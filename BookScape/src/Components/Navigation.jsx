@@ -9,7 +9,7 @@ const Navigation = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 ">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-10">
       {/* Dark mode toggle */}
       <div className="absolute top-[2rem] right-4 md:top-[2.5rem] md:right-28">
         <label className="inline-flex items-center relative">

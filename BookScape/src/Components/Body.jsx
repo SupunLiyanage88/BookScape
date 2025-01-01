@@ -7,6 +7,7 @@ const Body = () => {
   const [secondSectionVisible, setSecondSectionVisible] = useState(false);
   const [firstSectionGone, setFirstSectionGone] = useState(false);
   const [secondSectionGone, setSecondSectionGone] = useState(false);
+  const [prevScrollY, setPrevScrollY] = useState(0); // To track the previous scroll position
 
   useEffect(() => {
     // Trigger first section visibility immediately
@@ -20,31 +21,50 @@ const Body = () => {
     return () => clearTimeout(timer); // Cleanup on unmount
   }, []);
 
-  // Scroll event to detect when to animate sections disappearing
+  // Scroll event to detect when to animate sections disappearing or appearing
   const handleScroll = () => {
+    const currentScrollY = window.scrollY; // Current scroll position
+
     const firstSectionPosition = document.getElementById("firstSection").getBoundingClientRect();
     const secondSectionPosition = document.getElementById("secondSection").getBoundingClientRect();
 
-    // If the first section is out of view (scroll down)
-    if (firstSectionPosition.top < window.innerHeight * 0.5) {
-      setFirstSectionGone(true);
-    } else {
-      setFirstSectionGone(false);
+    // If user is scrolling down
+    if (currentScrollY > prevScrollY) {
+      // If the first section is out of view (scroll down)
+      if (firstSectionPosition.top < window.innerHeight * 0.5) {
+        setFirstSectionGone(true);
+      } else {
+        setFirstSectionGone(false);
+      }
+
+      // If the second section is out of view (scroll down)
+      if (secondSectionPosition.top < window.innerHeight * 0.5) {
+        setSecondSectionGone(true);
+      } else {
+        setSecondSectionGone(false);
+      }
+    } 
+    // If user is scrolling up
+    else {
+      // If the first section is in view (scroll up)
+      if (firstSectionPosition.top >= window.innerHeight * 0.5) {
+        setFirstSectionGone(false);
+      }
+
+      // If the second section is in view (scroll up)
+      if (secondSectionPosition.top >= window.innerHeight * 0.5) {
+        setSecondSectionGone(false);
+      }
     }
 
-    // If the second section is out of view (scroll down)
-    if (secondSectionPosition.top < window.innerHeight * 0.5) {
-      setSecondSectionGone(true);
-    } else {
-      setSecondSectionGone(false);
-    }
+    setPrevScrollY(currentScrollY); // Update the previous scroll position
   };
 
   // Attach scroll event listener
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll); // Cleanup
-  }, []);
+  }, [prevScrollY]);
 
   return (
     <div className="px-24 py-10 w-full md:w-[60rem] mx-auto">

@@ -20,11 +20,12 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="sticky top-0 z-10 w-full bg-white">
-      <div className="mx-20"> {/* This container will control the width of inner content */}
+    <div className="w-full bg-white dark:bg-gray-900 sm:sticky sm:top-0 z-10">
+
+      <div className="mx-4 sm:mx-8 lg:mx-20"> {/* Adjusted for responsiveness */}
         <form onSubmit={handleSearch} className="flex flex-col gap-4">
-          <div className="flex gap-2 mx-auto items-center my-5">
-            <div className="p-3 rounded-2xl bg-gray-custom ">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-2 mx-auto items-center my-5">
+            <div className="p-3 rounded-2xl bg-gray-custom w-full sm:w-auto flex justify-center items-center"> {/* Added flex and center alignment */}
               <FontAwesomeIcon
                 icon={faSearch}
                 className={`ml-3 mr-4 text-xl text-gray-600 ${query === "" && "focus:animate-wiggle"}`}
@@ -34,13 +35,13 @@ const SearchBar = ({ onSearch }) => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search for books..."
-                className="p-2 rounded w-[40rem] outline-none bg-gray-custom transition-all duration-300 ease-in-out transform"
+                className="p-2 rounded w-full sm:w-[40rem] outline-none bg-gray-custom transition-all duration-300 ease-in-out transform"
               />
             </div>
 
             <button
               type="submit"
-              className="flex h-16 justify-center gap-2 items-center mx-auto shadow-xl text-lg bg-gray-custom backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-xl before:bg-emerald-500 hover:text-gray-50 dark:text-black before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-xl group"
+              className="flex h-16 justify-center gap-2 items-center mx-auto shadow-xl text-lg bg-gray-custom backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-xl before:bg-emerald-500 hover:text-gray-50 dark:text-black before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-xl group w-full sm:w-auto"
             >
               Search
               <svg
@@ -56,12 +57,12 @@ const SearchBar = ({ onSearch }) => {
             </button>
           </div>
 
-          <div className="flex flex-wrap gap-4 mx-auto items-center mb-5">
+          <div className="flex flex-col sm:flex-row gap-4 mx-auto items-center mb-5">
             <select
               name="category"
               value={filters.category}
               onChange={handleFilterChange}
-              className="border p-2 rounded transition-all duration-300 ease-in-out transform hover:scale-105"
+              className="border p-2 rounded w-full sm:w-auto transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               <option value="">All Categories</option>
               <option value="fiction">Fiction</option>
@@ -73,7 +74,7 @@ const SearchBar = ({ onSearch }) => {
               name="language"
               value={filters.language}
               onChange={handleFilterChange}
-              className="border p-2 rounded transition-all duration-300 ease-in-out transform hover:scale-105"
+              className="border p-2 rounded w-full sm:w-auto transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               <option value="">All Languages</option>
               <option value="en">English</option>
@@ -86,7 +87,7 @@ const SearchBar = ({ onSearch }) => {
               value={filters.author}
               onChange={handleFilterChange}
               placeholder="Author"
-              className="border p-2 rounded transition-all duration-300 ease-in-out transform hover:scale-105"
+              className="border p-2 rounded w-full sm:w-auto transition-all duration-300 ease-in-out transform hover:scale-105"
             />
           </div>
         </form>

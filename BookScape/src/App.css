@@ -3,3 +3,15 @@ h1 {
     font-weight: 400;
     font-style: normal;
 }
+
+/* Light mode background */
+body {
+    background-color: white;
+}
+
+/* Dark mode background */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #a9a9a9; /* Equivalent to dark:bg-gray-900 */
+    }
+}

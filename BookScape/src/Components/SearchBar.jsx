@@ -1,3 +1,5 @@
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
 const SearchBar = ({ onSearch }) => {
@@ -18,55 +20,77 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="mx-20">
-      <form onSubmit={handleSearch} className="flex flex-col gap-4">
-        <div className="flex gap-2">
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search for books..."
-            className="border p-2 rounded w-full"
-          />
-          <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
-            Search
-          </button>
-        </div>
-        
-        <div className="flex flex-wrap gap-4">
-          <select
-            name="category"
-            value={filters.category}
-            onChange={handleFilterChange}
-            className="border p-2 rounded"
-          >
-            <option value="">All Categories</option>
-            <option value="fiction">Fiction</option>
-            <option value="nonfiction">Non-Fiction</option>
-            <option value="science">Science</option>
-            <option value="history">History</option>
-          </select>
-          <select
-            name="language"
-            value={filters.language}
-            onChange={handleFilterChange}
-            className="border p-2 rounded"
-          >
-            <option value="">All Languages</option>
-            <option value="en">English</option>
-            <option value="fr">French</option>
-            <option value="es">Spanish</option>
-          </select>
-          <input
-            type="text"
-            name="author"
-            value={filters.author}
-            onChange={handleFilterChange}
-            placeholder="Author"
-            className="border p-2 rounded"
-          />
-        </div>
-      </form>
+    <div className="sticky top-0 z-10 w-full bg-white">
+      <div className="mx-20"> {/* This container will control the width of inner content */}
+        <form onSubmit={handleSearch} className="flex flex-col gap-4">
+          <div className="flex gap-2 mx-auto items-center my-5">
+            <div className="p-3 rounded-2xl bg-gray-custom ">
+              <FontAwesomeIcon
+                icon={faSearch}
+                className={`ml-3 mr-4 text-xl text-gray-600 ${query === "" && "focus:animate-wiggle"}`}
+              />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search for books..."
+                className="p-2 rounded w-[40rem] outline-none bg-gray-custom transition-all duration-300 ease-in-out transform"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="flex h-16 justify-center gap-2 items-center mx-auto shadow-xl text-lg bg-gray-custom backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-xl before:bg-emerald-500 hover:text-gray-50 dark:text-black before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-xl group"
+            >
+              Search
+              <svg
+                className="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
+                viewBox="0 0 16 19"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+                  className="fill-gray-800 group-hover:fill-gray-800"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <div className="flex flex-wrap gap-4 mx-auto items-center mb-5">
+            <select
+              name="category"
+              value={filters.category}
+              onChange={handleFilterChange}
+              className="border p-2 rounded transition-all duration-300 ease-in-out transform hover:scale-105"
+            >
+              <option value="">All Categories</option>
+              <option value="fiction">Fiction</option>
+              <option value="nonfiction">Non-Fiction</option>
+              <option value="science">Science</option>
+              <option value="history">History</option>
+            </select>
+            <select
+              name="language"
+              value={filters.language}
+              onChange={handleFilterChange}
+              className="border p-2 rounded transition-all duration-300 ease-in-out transform hover:scale-105"
+            >
+              <option value="">All Languages</option>
+              <option value="en">English</option>
+              <option value="fr">French</option>
+              <option value="es">Spanish</option>
+            </select>
+            <input
+              type="text"
+              name="author"
+              value={filters.author}
+              onChange={handleFilterChange}
+              placeholder="Author"
+              className="border p-2 rounded transition-all duration-300 ease-in-out transform hover:scale-105"
+            />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

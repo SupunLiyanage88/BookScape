@@ -7,6 +7,7 @@ import Navigation from "./Components/Navigation.jsx";
 import Body from "./Components/Body.jsx";
 import BookDetail from "./Components/BookDetail.jsx";
 import Content from "./Components/Content.jsx";
+import Footer from "./Components/Footer.jsx";
 import "./App.css";
 
 const App = () => {
@@ -57,6 +58,7 @@ const App = () => {
                   <SearchBar onSearch={fetchBooks} />
                   <BookList books={books} />
                   <Content />
+                  <Footer />
                 </>
               }
             />

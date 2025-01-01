@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SearchBar from "./Components/SearchBar.jsx";
 import BookList from "./Components/BookList.jsx";
 import Navigation from "./Components/Navigation.jsx";
 import Body from "./Components/Body.jsx";
+import BookDetail from "./Components/BookDetail.jsx";
+import Content from "./Components/Content.jsx";
 import "./App.css";
 
 const App = () => {
@@ -11,15 +14,13 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   // Fetch books based on query and filters
-  const fetchBooks = async (query, filters) => {
+  const fetchBooks = async (query, filters = {}) => {
     try {
       let apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${query}`;
-      
-      // Add filters to the query string
       if (filters.category) apiUrl += `+subject:${filters.category}`;
       if (filters.language) apiUrl += `&langRestrict=${filters.language}`;
       if (filters.author) apiUrl += `+inauthor:${filters.author}`;
-      
+
       const response = await axios.get(apiUrl);
       setBooks(response.data.items || []);
     } catch (error) {
@@ -41,22 +42,30 @@ const App = () => {
     }
   }, [darkMode]);
 
-  
-
   return (
-    <div className={`min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white`}>
-      <div className="container mx-auto p-4">
-
-        <Navigation />
-        <Body />
-        <SearchBar onSearch={fetchBooks} />
-        <BookList books={books} />
+    <Router>
+      <div className={`min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white`}>
+        <div className="container mx-auto p-4">
+          <Navigation toggleDarkMode={toggleDarkMode} />
+          <Routes>
+            {/* Home Route */}
+            <Route
+              path="/"
+              element={
+                <>
+                  <Body />
+                  <SearchBar onSearch={fetchBooks} />
+                  <BookList books={books} />
+                  <Content />
+                </>
+              }
+            />
+            {/* Book Detail Route */}
+            <Route path="/book/:id" element={<BookDetail />} />
+          </Routes>
+        </div>
       </div>
-
-
-
-
-    </div>
+    </Router>
   );
 };
 

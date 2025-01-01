@@ -1,0 +1,30 @@
+.author-info {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.author-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.quote-fade-enter {
+    opacity: 0;
+}
+
+.quote-fade-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms;
+}
+
+.quote-fade-exit {
+    opacity: 1;
+}
+
+.quote-fade-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms;
+}

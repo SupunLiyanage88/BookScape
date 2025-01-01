@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { FaSpinner } from "react-icons/fa"; 
 
 const BookDetailPage = () => {
-  const { id } = useParams(); // Retrieve the book ID from the URL
+  const { id } = useParams();
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchBookDetails = async () => {
@@ -14,7 +16,7 @@ const BookDetailPage = () => {
         setBook(response.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching book details:", error);
+        setError("Failed to load book details. Please try again later.");
         setLoading(false);
       }
     };
@@ -23,30 +25,40 @@ const BookDetailPage = () => {
   }, [id]);
 
   if (loading) {
-    return <div className="text-center mt-4">Loading book details...</div>;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <FaSpinner className="animate-spin text-4xl text-blue-500" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500 mt-6 text-xl">{error}</div>;
   }
 
   if (!book) {
-    return <div className="text-center mt-4">Book not found.</div>;
+    return <div className="text-center mt-6 text-xl">Book not found.</div>;
   }
 
   const { title, authors, description, imageLinks, publishedDate, publisher } = book.volumeInfo;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="flex flex-col md:flex-row gap-6">
-        <img
-          src={imageLinks?.thumbnail || "https://via.placeholder.com/128x193"}
-          alt={title}
-          className="w-48 h-64 object-cover"
-        />
+    <div className="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="relative">
+          <img
+            src={imageLinks?.thumbnail || "https://via.placeholder.com/128x193"}
+            alt={title}
+            className="w-full h-full object-cover rounded-lg shadow-lg"
+          />
+        </div>
         <div>
-          <h1 className="text-3xl font-bold">{title}</h1>
-          <p className="text-gray-600 text-lg mt-2">{authors?.join(", ") || "Unknown Author"}</p>
+          <h1 className="text-4xl font-semibold text-gray-800">{title}</h1>
+          <p className="text-lg text-gray-600 mt-2">{authors?.join(", ") || "Unknown Author"}</p>
           <p className="text-sm text-gray-500 mt-1">{publisher} ({publishedDate})</p>
-          <div className="mt-4 text-gray-700">
-            <h3 className="font-semibold text-lg">Description:</h3>
-            <p>{description || "No description available."}</p>
+          <div className="mt-6 text-gray-700">
+            <h3 className="font-semibold text-xl">Description:</h3>
+            <p className="mt-3">{description || "No description available."}</p>
           </div>
         </div>
       </div>

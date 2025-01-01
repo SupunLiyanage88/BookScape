@@ -38,7 +38,7 @@ const SearchBar = ({ onSearch }) => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search for books..."
-                className="p-2 rounded w-full sm:w-[40rem] outline-none bg-gray-custom transition-all duration-300 ease-in-out transform"
+                className="p-2 rounded w-full sm:w-[40rem] outline-none dark:text-black bg-gray-custom transition-all duration-300 ease-in-out transform"
               />
             </div>
 
@@ -65,7 +65,7 @@ const SearchBar = ({ onSearch }) => {
               name="category"
               value={filters.category}
               onChange={handleFilterChange}
-              className="border p-2 rounded w-full sm:w-auto transition-all duration-300 ease-in-out transform hover:scale-105"
+              className="border p-2 px-5 rounded w-full sm:w-auto transition-all duration-300 ease-in-out transform hover:scale-105 dark:text-gray-400"
             >
               <option value="">All Categories</option>
               <option value="fiction">Fiction</option>
@@ -77,7 +77,7 @@ const SearchBar = ({ onSearch }) => {
               name="language"
               value={filters.language}
               onChange={handleFilterChange}
-              className="border p-2 rounded w-full sm:w-auto transition-all duration-300 ease-in-out transform hover:scale-105"
+              className="border p-2 px-5 rounded w-full  sm:w-auto transition-all duration-300 ease-in-out transform hover:scale-105 dark:text-gray-400"
             >
               <option value="">All Languages</option>
               <option value="en">English</option>
@@ -90,7 +90,7 @@ const SearchBar = ({ onSearch }) => {
               value={filters.author}
               onChange={handleFilterChange}
               placeholder="Author"
-              className="border p-2 rounded w-full sm:w-auto transition-all duration-300 ease-in-out transform hover:scale-105"
+              className="border p-2 px-5 dark:text-black rounded w-full sm:w-auto transition-all duration-300 ease-in-out transform hover:scale-105"
             />
           </div>
         </form>

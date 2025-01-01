@@ -45,7 +45,7 @@ const App = () => {
   return (
     <Router>
       <div className={`min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white`}>
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto">
           <Navigation toggleDarkMode={toggleDarkMode} />
           <Routes>
             {/* Home Route */}

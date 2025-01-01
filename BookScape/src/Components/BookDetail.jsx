@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import "./searchbar.css";
+import Footer from "./Footer.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookBookmark, faBookOpen, faLanguage, faPager } from "@fortawesome/free-solid-svg-icons";
 
 const BookDetail = () => {
   const { id } = useParams(); // Get the book ID from the route
@@ -20,7 +24,43 @@ const BookDetail = () => {
   }, [id]);
 
   if (!book) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center mt-[10rem]">
+    <div class="loader">
+      <div>
+        <ul>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+        </ul>
+      </div><span>Loading</span></div>
+    </div>;
   }
 
   const {
@@ -35,26 +75,31 @@ const BookDetail = () => {
   } = book.volumeInfo;
 
   return (
-    <div className="p-4">
-      <div className="flex flex-col md:flex-row items-start gap-4">
+    <div className="p-4 w-full">
+      <div className="flex md:flex-row items-center mx-auto px-[20rem]">
         <img
           src={imageLinks?.thumbnail || "https://via.placeholder.com/128x193"}
           alt={title}
-          className="w-40 h-auto object-cover"
+          className="w-64 h-auto object-cover my-10 mx-auto border border-black"
         />
-        <div>
-          <h1 className="text-2xl font-bold">{title}</h1>
+        <div className="mx-auto items-start text-start">
+          <h1 className="text-2xl font-semibold">{title}</h1>
           <p className="text-sm text-gray-600">{authors?.join(", ") || "Unknown Author"}</p>
           <p className="text-sm mt-2">{categories?.join(", ") || "Uncategorized"}</p>
-          <p className="text-sm mt-2">Published: {publishedDate || "Unknown"}</p>
-          <p className="text-sm mt-2">Pages: {pageCount || "N/A"}</p>
-          <p className="text-sm mt-2">Language: {language?.toUpperCase() || "Unknown"}</p>
+          <p className="text-sm mt-2"><FontAwesomeIcon icon={faBookBookmark} className="mr-3 text-xl"/>Published: {publishedDate || "Unknown"}</p>
+          <p className="text-sm mt-2"><FontAwesomeIcon icon={faBookOpen} className="mr-3 text-xl"/>Pages: {pageCount || "N/A"}</p>
+          <p className="text-sm mt-2"><FontAwesomeIcon icon={faLanguage} className="mr-3 text-xl"/> Language: {language?.toUpperCase() || "Unknown"}</p>
         </div>
       </div>
-      <div className="mt-4">
-        <h2 className="text-xl font-semibold">Description</h2>
-        <p className="text-gray-700 mt-2">{description || "No description available."}</p>
+      <div className="mt-10 mx-auto px-[23rem] items-center text-center ">
+        <h2 className="text-xl font-semibold text-start">Description</h2>
+        <p className="text-gray-700 mt-2 w-[45rem] mx-auto text-start dark:text-gray-200">{description || "No description available."}</p>
       </div>
+
+
+
+
+    <Footer />
     </div>
   );
 };

@@ -8,6 +8,7 @@ import Body from "./Components/Body.jsx";
 import BookDetail from "./Components/BookDetail.jsx";
 import Content from "./Components/Content.jsx";
 import Footer from "./Components/Footer.jsx";
+import User from "./Components/User.jsx"; // Import the User component
 import "./App.css";
 
 const App = () => {
@@ -64,6 +65,8 @@ const App = () => {
             />
             {/* Book Detail Route */}
             <Route path="/book/:id" element={<BookDetail />} />
+            {/* User Profile Route */}
+            <Route path="/user" element={<User />} />
           </Routes>
         </div>
       </div>

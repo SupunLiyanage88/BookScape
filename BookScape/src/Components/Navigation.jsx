@@ -1,12 +1,20 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./Navigation.css";
 
-const Navigation = () => {
-  const toggleDarkMode = () => {
-    document.documentElement.classList.toggle("dark");
+const Navigation = ({ toggleDarkMode }) => {
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
+  // Function to handle navigation to the User profile page
+  const goToUserProfile = () => {
+    navigate("/user");
   };
+  const handleHouseClick = () => {
+    navigate("/"); // Navigate to the desired path ("/" in this case)
+  };
+
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-10">
@@ -30,7 +38,7 @@ const Navigation = () => {
             className="fill-white peer-checked:opacity-60 absolute w-4 h-4 md:w-6 md:h-6 left-[10px] md:left-[13px]"
           >
             <path
-              d="M12,17c-2.76,0-5-2.24-5-5s2.24-5,5-5,5,2.24,5,5-2.24,5-5,5ZM13,0h-2V5h2V0Zm0,19h-2v5h2v-5ZM5,11H0v2H5v-2Zm19,0h-5v2h5v-2Zm-2.81-6.78l-1.41-1.41-3.54,3.54,1.41,1.41,3.54-3.54ZM7.76,17.66l-1.41-1.41-3.54,3.54,1.41,1.41,3.54-3.54Zm0-11.31l-3.54-3.54-1.41,1.41,3.54,3.54,1.41-1.41Zm13.44,13.44l-3.54-3.54-1.41,1.41,3.54,3.54,1.41-1.41Z"
+              d="M12,17c-2.76,0-5-2.24-5-5s2.24-5,5-5,5,2.24,5,5-2.24,5-5,5ZM13,0h-2V5h2V0Zm0,19h-2v5h2v-5ZM5,11H0v2H5v-2Zm19,0h5v2h5v-2Zm-2.81-6.78l-1.41-1.41-3.54,3.54,1.41,1.41,3.54-3.54ZM7.76,17.66l-1.41-1.41-3.54,3.54,1.41,1.41,3.54-3.54Zm0-11.31l-3.54-3.54-1.41,1.41,3.54,3.54,1.41-1.41Zm13.44,13.44l-3.54-3.54-1.41,1.41,3.54,3.54,1.41-1.41Z"
             ></path>
           </svg>
 
@@ -50,24 +58,21 @@ const Navigation = () => {
       </div>
 
       {/* Header */}
-<h1 className="text-[2rem] md:text-[3rem] text-start ml-8 md:ml-24 mb-4 handwriting typing-effect">
-  BookScape
-</h1>
-
-
-
-
-
+      <h1 className="text-[2rem] md:text-[3rem] text-start ml-8 md:ml-24 mb-4 handwriting typing-effect">
+        BookScape
+      </h1>
 
       {/* Navigation Icons */}
       <div className="flex gap-6 md:gap-10 mt-5 justify-center">
         <FontAwesomeIcon
           icon={faHouse}
           className="text-2xl md:text-3xl transition-transform duration-300 hover:scale-110"
+          onClick={handleHouseClick} // Add onClick event handler
         />
         <FontAwesomeIcon
           icon={faUser}
           className="text-2xl md:text-3xl transition-transform duration-300 hover:scale-110"
+          onClick={goToUserProfile} // Add onClick to navigate to the user profile
         />
         <FontAwesomeIcon
           icon={faSearch}

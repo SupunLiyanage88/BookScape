@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import "./searchbar.css";
 import Footer from "./Footer.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookBookmark, faBookOpen, faLanguage, faPager } from "@fortawesome/free-solid-svg-icons";
+import { faBookBookmark, faBookOpen, faLanguage } from "@fortawesome/free-solid-svg-icons";
+import "./SearchBar.jsx";
 
 const BookDetail = () => {
   const { id } = useParams(); // Get the book ID from the route
@@ -76,30 +76,42 @@ const BookDetail = () => {
 
   return (
     <div className="p-4 w-full">
-      <div className="flex md:flex-row items-center mx-auto px-[20rem]">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-10 mx-auto px-4 sm:px-6 lg:px-12">
         <img
           src={imageLinks?.thumbnail || "https://via.placeholder.com/128x193"}
           alt={title}
-          className="w-64 h-auto object-cover my-10 mx-auto border border-black"
+          className="w-64 h-auto object-cover my-4 md:my-0 mx-auto md:mr-6 sm:w-80 md:w-64 mb-4"  
         />
-        <div className="mx-auto items-start text-start">
-          <h1 className="text-2xl font-semibold">{title}</h1>
+        <div className="text-start mt-4 md:mt-0 md:max-w-[40rem] w-full">
+          <h3 className="text-2xl font-semibold">{title}</h3>
           <p className="text-sm text-gray-600">{authors?.join(", ") || "Unknown Author"}</p>
           <p className="text-sm mt-2">{categories?.join(", ") || "Uncategorized"}</p>
-          <p className="text-sm mt-2"><FontAwesomeIcon icon={faBookBookmark} className="mr-3 text-xl"/>Published: {publishedDate || "Unknown"}</p>
-          <p className="text-sm mt-2"><FontAwesomeIcon icon={faBookOpen} className="mr-3 text-xl"/>Pages: {pageCount || "N/A"}</p>
-          <p className="text-sm mt-2"><FontAwesomeIcon icon={faLanguage} className="mr-3 text-xl"/> Language: {language?.toUpperCase() || "Unknown"}</p>
+          <p className="text-sm mt-2">
+            <FontAwesomeIcon icon={faBookBookmark} className="mr-3 text-xl" />
+            Published: {publishedDate || "Unknown"}
+          </p>
+          <p className="text-sm mt-2">
+            <FontAwesomeIcon icon={faBookOpen} className="mr-3 text-xl" />
+            Pages: {pageCount || "N/A"}
+          </p>
+          <p className="text-sm mt-2">
+            <FontAwesomeIcon icon={faLanguage} className="mr-3 text-xl" />
+            Language: {language?.toUpperCase() || "Unknown"}
+          </p>
         </div>
       </div>
-      <div className="mt-10 mx-auto px-[23rem] items-center text-center ">
-        <h2 className="text-xl font-semibold text-start">Description</h2>
-        <p className="text-gray-700 mt-2 w-[45rem] mx-auto text-start dark:text-gray-200">{description || "No description available."}</p>
-      </div>
+      <div className="mt-8 mx-auto px-4 sm:px-6 lg:px-12">
+  <h2 className="text-xl font-semibold text-start mb-4 w-full sm:w-4/5 md:w-3/4 lg:w-2/3 mx-auto">
+    Description
+  </h2>
+  <p className="text-gray-700 mt-2 w-full sm:w-4/5 md:w-3/4 lg:w-2/3 mx-auto text-start dark:text-gray-200 leading-relaxed">
+    {description || "No description available."}
+  </p>
+</div>
 
 
 
-
-    <Footer />
+      <Footer />
     </div>
   );
 };

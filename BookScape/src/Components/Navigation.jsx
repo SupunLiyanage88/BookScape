@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
@@ -7,14 +7,37 @@ import "./Navigation.css";
 const Navigation = ({ toggleDarkMode }) => {
   const navigate = useNavigate(); // Initialize useNavigate hook
 
+  // Create a reference for the search bar
+  const searchBarRef = useRef(null);
+
   // Function to handle navigation to the User profile page
   const goToUserProfile = () => {
     navigate("/user");
   };
+
   const handleHouseClick = () => {
     navigate("/"); // Navigate to the desired path ("/" in this case)
   };
 
+  // Function to scroll to the search bar
+  const handleSearchClick = () => {
+    if (searchBarRef.current) {
+      // Scroll to the search bar section
+      searchBarRef.current.scrollIntoView({
+        behavior: "smooth", // Smooth scrolling
+        block: "start",     // Align to the top of the section
+      });
+  
+      // Additional scroll adjustment
+      setTimeout(() => {
+        window.scrollBy({
+          top: 500, // Adjust this value to scroll more
+          behavior: "smooth",
+        });
+      }, 300); // Delay to allow the initial scroll to complete
+    }
+  };
+  
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-10">
@@ -77,7 +100,13 @@ const Navigation = ({ toggleDarkMode }) => {
         <FontAwesomeIcon
           icon={faSearch}
           className="text-2xl md:text-3xl transition-transform duration-300 hover:scale-110"
+          onClick={handleSearchClick} // Add onClick to scroll to the search bar
         />
+      </div>
+
+      {/* Search Bar Section */}
+      <div ref={searchBarRef} id="searchBarSection" className="mt-10">
+        {/* Your search bar component or input field goes here */}
       </div>
     </div>
   );

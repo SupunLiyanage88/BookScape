@@ -7,7 +7,7 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row items-center justify-between text-center md:text-left">
                     <p className="text-xl font-semibold mb-4 md:mb-0">&copy; 2023 BookScape. All rights reserved.</p>
                     <nav className="flex gap-8">
-                        <a href="/about" className="text-gray-400 hover:text-white transition-colors duration-300">About Us</a>
+                        <a href="/AboutUs" className="text-gray-400 hover:text-white transition-colors duration-300">About Us</a>
                         <a href="mailto:liyanagesupun10@gmail.com" className="text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
                         <a href="/privacy" className="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a>
                     </nav>
